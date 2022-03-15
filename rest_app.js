@@ -92,6 +92,13 @@ app.get('/filter/:mealID', (req,res) => {
     })
 })
 
+app.get('/quicksearch',(req,res) => {
+    db.collection('Menu').find().toArray((err,result) =>{
+        if(err) throw err;
+        res.send(result)
+    })
+})
+
 app.get('/menu/:id',(req,res) => {
     let restId  = Number(req.params.id)
     db.collection('Menu').find({restaurant_id:restId}).toArray((err,result) =>{
@@ -150,53 +157,7 @@ app.put('/updateOrder/:id', (req,res) => {
 })
 
 
-const data1 = [{
-    "menu_id":1,
-    "menu_name": "Garlic Breadsticks",
-    "description": "Baked to perfection. Your perfect pizza partner! Tastes best with dip",
-    "restaurant_id": 1,
-    "menu_image": "https://b.zmtcdn.com/data/dish_photos/03b/787727453bd857cff70be6560bfb603b.png",
-    "menu_type": "vegetarian",
-    "menu_price": "99"
-},
-{
-    "menu_id":2,
-    "menu_name": "Farmhouse",
-    "description": "Delightful combination of onion, capsicum, tomato & grilled mushroom",
-    "restaurant_id": 1,
-    "menu_image": "https://b.zmtcdn.com/data/dish_photos/a3d/7ca006ec8907c2ae13fd006cf0853a3d.png",
-    "menu_type": "vegetarian",
-    "menu_price": "229"
-},
-{
-    "menu_id":3,
-    "menu_name": "Indi Tandoori Paneer",
-    "description": "It is hot. It is spicy. It is oh-so-Indian. Tandoori paneer with capsicum",
-    "restaurant_id": 1,
-    "menu_image": "https://b.zmtcdn.com/data/dish_photos/665/febfde767bd3543e6b8d9094f2531665.jpg",
-    "menu_type": "vegetarian",
-    "menu_price": "249"
-},
-{
-    "menu_id":4,
-    "menu_name": "Chicken Pepperoni Stuffed Garlic Bread",
-    "description": "Freshly Baked Garlic Bread stuffed with Delectable Chicken Pepperoni, Cheese and sprinkled with Basil Parsley",
-    "restaurant_id": 1,
-    "menu_image": "https://b.zmtcdn.com/data/dish_photos/17f/731e22c58e4b9571db474c7099b1817f.png",
-    "menu_type": "non-vegetarian",
-    "menu_price": "159"
-},
-{
-    "menu_id":5,
-    "menu_name": "Creamy Tomato Pasta Pizza - Non Veg",
-    "description": "Loaded with a delicious creamy tomato pasta topping, BBQ pepper chicken, green capsicum, crunchy red and yellow bell peppers.",
-    "restaurant_id": 1,
-    "menu_image": "https://b.zmtcdn.com/data/dish_photos/b1f/b33c5c010ef9458bdf571b044553cb1f.jpg",
-    "menu_type": "non-vegetarian",
-    "menu_price": "229"
-}
 
-];
 
 //Insert many documents
 
