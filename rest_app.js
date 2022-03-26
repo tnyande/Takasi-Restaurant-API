@@ -107,6 +107,13 @@ app.get('/menu/:id',(req,res) => {
     })
 })
 
+app.get('/details/:restid',(req,res) => {
+    let restId  = Number(req.params.restid)
+    db.collection('zomato').find({restaurant_id:restId}).toArray((err,result) =>{
+        if(err) throw err;
+        res.send(result)
+    })
+})
 
 
 // get orders
