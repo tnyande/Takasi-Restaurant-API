@@ -34,17 +34,17 @@ app.get('/location',(req,res) => {
 
 //restaurant
 app.get('/restaurants', (req,res) => {
-    let stateID = Number(req.params.state_id)
-    let mealID = Number(req.params.meal_id)
+    let stateID = Number(req.params.stateid)
+    let mealID = Number(req.params.mealid)
     let query = {};
     if(stateID&mealID){
-        query = {"mealtypes.mealtype_id":mealID, state_id:stateID}
+        query = {"mealtypes.mealtype_id":mealID, stateid:stateID}
     }
     else if(stateID){
         query = {state_id:stateID}
     }
     else if(mealID){
-        query = {"mealtypes.mealtype_id":mealID}
+        query = {"mealTypes.mealtype_id":mealID}
     }
     console.log("stateID ", stateID)
     db.collection('zomato').find(query).toArray( (err, result) =>{
@@ -55,7 +55,7 @@ app.get('/restaurants', (req,res) => {
 
 //filters
 
-app.get('/filter/:mealID', (req,res) => {
+app.get('/filter/:mealId', (req,res) => {
     let sort = {cost:1}
     let mealId = Number(req.params.mealId)
     let skip = 0;
