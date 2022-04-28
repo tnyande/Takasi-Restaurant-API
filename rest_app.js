@@ -163,7 +163,14 @@ app.put('/updateOrder/:id', (req,res) => {
     )
 })
 
+app.post('/menuItem', (req, res) => {
+    console.log(req.body)
+    db.collection('menuItem').insertMany(req.body, (err,result) => {
+        if(err) throw err;
+        res.send('menu added')
+    })
 
+})
 
 
 //Insert many documents
